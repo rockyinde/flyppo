@@ -1,0 +1,30 @@
+logging:
+  level: INFO
+  loggers:
+    com.flyppo: DEBUG
+  appenders:
+    - type: file
+      threshold: ${LOG_LEVEL ! 'INFO'}
+      logFormat: "%-6level [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg{} %n"
+      currentLogFilename: /opt/logs/cheetah/application.log
+      timeZone: IST
+      archive: false
+    - type: console
+      threshold: ${LOG_LEVEL ! 'INFO'}
+      logFormat: "%-6level [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg{} %n"
+      timeZone: IST
+
+kafka:
+  url: localhost
+  port: 9092
+  topic: urls
+
+couchbase:
+  couchOperationTimeoutMillis: 1000
+  couchQueryTimeoutMillis: 1000
+  couchConnectTimeoutMillis: 10000
+  couchNodeKeyList: localhost
+  bucketName: urls
+  bucketPassword: urls
+  keyPrefix: C_V1
+  keySeparator: "|"
